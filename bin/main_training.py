@@ -32,12 +32,7 @@ parser.add_argument(
 if __name__ == "__main__":
     args = parser.parse_args()
 
-    # initial_mapping, initial_mapping_w_scores, filtered_original_mapping = train_domain2go()
-
-    import pandas as pd
-    initial_mapping = pd.read_csv("/Volumes/ErvaSP/interpro-go/repo_deneme/Domain2GO/outputs/initial_mapping.txt")
-    initial_mapping_w_scores = pd.read_csv("/Volumes/ErvaSP/interpro-go/repo_deneme/Domain2GO/outputs/initial_mapping_w_scores.txt")
-    filtered_original_mapping = pd.read_csv("/Volumes/ErvaSP/interpro-go/repo_deneme/Domain2GO/outputs/filtered_original.txt")
+    initial_mapping, initial_mapping_w_scores, filtered_original_mapping = train_domain2go()
 
     # running EM algorithm
     
@@ -55,7 +50,7 @@ if __name__ == "__main__":
 
     # enrichment analysis/plot
     # if user doesn't want to perform EM algorithm, 
-    # "em_full_output.txt" file can be saved into outputs folder to perform enrichment analysis
+    # "em_full_output.txt" file can be saved into output folder to perform enrichment analysis
 
     if args.enrichment == "skip":
         pass

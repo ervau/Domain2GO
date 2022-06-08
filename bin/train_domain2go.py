@@ -7,7 +7,7 @@ from enrichment_analysis import run_enrichment_analysis
 
 # cwd = os.getcwd()
 # input_file_path = "{}Domain2GO/input_data".format(cwd.split("Domain2GO")[0])
-# output_file_path = "{}Domain2GO/outputs".format(cwd.split("Domain2GO")[0])
+# output_file_path = "{}Domain2GO/output".format(cwd.split("Domain2GO")[0])
 
 
 
