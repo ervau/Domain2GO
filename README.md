@@ -50,7 +50,7 @@ python main_training.py --em skip --enrichment skip --cafa_eval skip
 
 ## Please refer for more information:
 
-Ulusoy, E., & Dogan, T. (2022). Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO. bioRxiv, 514980v1. [Link](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1)
+Ulusoy, E., & Dogan, T. (2022). Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO. *bioRxiv*, 514980v1. [Link](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1)
 
 
 <br/>
