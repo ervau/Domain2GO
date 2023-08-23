@@ -6,3 +6,4 @@ dask=2022.2.1
 numpy=1.20.3
 scipy=1.7.1
 requests=2.31.0
+biopython=1.81
