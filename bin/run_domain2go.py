@@ -15,9 +15,8 @@ args = parser.parse_args()
 
 def find_domains():
 
-    email = input("Please enter your email: ")
+    email = input("Please enter your email for InterProScan query: ")
     protein_input = input("Please enter the protein sequence or fasta file location: ")
-    print(f'Finding domains in sequence using InterProScan...')
 
     # read protein sequence
     # if '.fa' or '.fasta' in protein_input read fasta file
@@ -31,12 +30,15 @@ def find_domains():
     else:
         # read protein sequence
         sequence = protein_input
+        name = input("Please enter a name for the protein sequence: ")
 
     # send request to interproscan api
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'text/plain',
     }
+
+    print(f'Finding domains in sequence using InterProScan. This may take a while...')
 
     data= {
        'email': email,
@@ -56,52 +58,60 @@ def find_domains():
     }
 
     job_result_url = f'https://www.ebi.ac.uk/Tools/services/rest/iprscan5/result/{job_id}/json'
-    job_result_response = requests.get(job_result_url, headers=headers)
-
+    
     json_output = None
-    if job_result_response.status_code == 200:
-        print('InterProScan job done')
-        json_output= job_result_response.json()['results']    
-    elif job_result_response.status_code == 400:
-        # wait for 30 seconds and try again
-        time.sleep(60)
-
-        job_result_response = requests.get(job_result_url, headers=headers)
-        
-        if job_result_response.status_code == 200:
-            print('InterProScan job done')
-            json_output= job_result_response.json()['results']    
-
-        else:
-            time.sleep(60)
-            job_result_response = requests.get(job_result_url, headers=headers)
+    entries = dict()
+    with requests.Session() as s:
+        # try 10 times if not successful print error
+        c=0
+        while c<10:
+            job_result_response = s.get(job_result_url, headers=headers)
             if job_result_response.status_code == 200:
+                json_output= job_result_response.json()['results'][0]
                 print('InterProScan job done')
-                json_output= job_result_response.json()['results']    
+                break
             else:
-                print('Error in InterProScan job')
-                print(job_result_response.text)
+                time.sleep(60)
+                c+=1
 
-    entries = set()
-    if json_output is not None:
+    if json_output is None:
+        print('Error in InterProScan job')
+        print(job_result_response.text)
+        return None
+    
+    else:
         for elem in json_output['matches']:
-            locations = {f"{i['start']}, {i['end']}" for i in elem['locations']}
             entry = elem['signature']['entry']
-            if type(entry) == dict and entry['type'] == 'DOMAIN':
-                entry_dict = {
-                    'accession': entry['accession'],
-                    'name': entry['name'],
-                    'locations': locations
-                }
 
-                entries.add(entry_dict)
+            location_list = [f"{i['start']}-{i['end']}" for i in elem['locations']]
+
+            if type(entry) == dict and entry['type'] == 'DOMAIN':
+                if entry['accession'] not in entries:
+                    entries[entry['accession']] = {
+                        'name': entry['name'],
+                        # add locations as a list
+                        'locations': location_list
+                    }
+
+                else:
+                    try:
+                        entries[entry['accession']]['locations'].extend(location_list)
+                    except AttributeError:
+                        entries[entry['accession']]['locations'] = entries[entry['accession']]['locations'].split(' ')
+                        entries[entry['accession']]['locations'] = [i for i in entries[entry['accession']]['locations'] if i]
+                        entries[entry['accession']]['locations'].extend(location_list)
+
+                entries[entry['accession']]['locations'] = list(set(entries[entry['accession']]['locations']))
+                entries[entry['accession']]['locations'] = ';'.join(entries[entry['accession']]['locations'])
         
     if entries:
         print('Domains found')
 
         # create domains dataframe
-        domains_df = pd.DataFrame(entries)
-
+        domains_df = pd.DataFrame.from_dict(entries, orient='index').reset_index()
+        domains_df['protein_name'] = name
+        domains_df = domains_df[['protein_name', 'index', 'name', 'locations']]
+        domains_df.columns = ['protein_name', 'accession', 'name', 'locations']
         return domains_df
 
     else:
@@ -113,23 +123,31 @@ def find_domains():
 def generate_function_predictions(domains_df, mapping_path):
     
     # read domain2go mappings
-    domain2go_df = pd.read_csv(os.path.join(mapping_path, 'finalized_domain2go_mappings.txt'), sep='\t', header=None)
+    domain2go_df = pd.read_csv(os.path.join(mapping_path, 'finalized_domain2go_mappings.txt'))
 
     # merge domain2go mappings with domains found in protein sequence
-    merged_df = pd.merge(domains_df, domain2go_df, how='left', left_on='accession', right_on='Interpro')
+    merged_df = pd.merge(domains_df, domain2go_df, left_on='accession', right_on='Interpro')
 
-    merged_df = merged_df[['accession', 'name', 'locations', 'GO', 's']]
-    merged_df.columns = ['domain_accession', 'domain_name', 'domain_locations', 'go_id', 'probability']
+    # if merged_df is empty return
+    if merged_df.empty:
+        print('No function predictions found')
+        return None
+    
+    else:
+        merged_df = merged_df[['accession', 'name', 'locations', 'GO', 's']]
+        merged_df.columns = ['domain_accession', 'domain_name', 'domain_locations', 'GO_id', 'probability']
 
-    # save protein function predictions
-    merged_df.to_csv(os.path.join(mapping_path, f'{uniprot_id}_function_predictions.txt'), sep='\t', index=False)
+        # save protein function predictions
+        protein_name = domains_df['protein_name'].iloc[0]
+        merged_df.to_csv(os.path.join(mapping_path, f'{protein_name}_function_predictions.txt'), index=False)
+        print(f'Protein function predictions saved at {os.path.join(mapping_path, f"{protein_name}_function_predictions.txt")}')
 
 
 def main(args):
 
     domains_df = find_domains()
 
-    if domains_df:
+    if type(domains_df) == pd.DataFrame:
         # check if domain2go mappings exist
         domain2go_df_path = os.path.join(args.mapping_path, 'finalized_domain2go_mappings.txt')
         if not os.path.exists(domain2go_df_path):
@@ -139,13 +157,15 @@ def main(args):
                 os.system(f'python main_training.py --em skip --enrichment skip --cafa_eval skip')
                 generate_function_predictions(domains_df, args.mapping_path)
 
-            except:
-                print('Error in generating Domain2GO mappings')
+            except Exception as e:
+                print('Error in generating Domain2GO mappings:')
+                # print traceback
+                print(e)
                 return None
 
         else:
             print(f'Domain2GO mappings found at {domain2go_df_path}, generating protein function predictions')
-            generate_function_predictions(domains_df, mapping_path)
+            generate_function_predictions(domains_df, args.mapping_path)
 
 
 if __name__ == '__main__':
