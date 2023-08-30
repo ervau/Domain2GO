@@ -56,6 +56,43 @@ python main_training.py --em skip --enrichment skip --cafa_eval skip
 
 <br/>
 
+## Protein Function Prediction with Domain2GO Mapping Set
+
+You can generate function predictions for a query protein using the final Domain2GO mapping set. Please note that the following program is designed to generate predictions for a single protein due to the extended runtime of InterProScan. If you need predictions for multiple UniProtKB/Swiss-Prot proteins, we recommend utilizing our comprehensive protein function prediction dataset available [here](https://drive.google.com/drive/folders/1YF-lgvPsv5Xt_dhjr21QUCOl6z1iV9ZJ?usp=sharing). The file "protein_function_predictions.txt" within this folder contains function predictions for a substantial collection of 291,519 UniProtKB/Swiss-Prot proteins.
+ 
+### Generating Function Predictions for a Query Protein
+To generate function predictions based on the final Domain2GO mapping set, please use the following command:
+
+``` 
+python /Volumes/ErvaSP/GitHub/Domain2GO/bin/run_domain2go.py --mapping_path=output/
+```
+
+Upon executing the command, you will be prompted to provide a query protein sequence or the path to a FASTA file containing the sequence.
+
+You have two options for entering the query protein sequence:
+
+1. Direct Sequence Entry
+
+```
+Please enter the protein sequence or fasta file location: MEYGKVIFLFLLFLKSGQGESLENYIKTEGASLSNSQKKQFVASSTEECEALCEKETEFVCRSFEHYNKEQKCVIMSENSKTSSVERKRDVVLFEKRIYLSDCKSGNGRNYRGTLSKTKSGITCQKWSDLSPHVPNYAPSKYPDAGLEKNYCRNPDDDVKGPWCYTTNPDIRYEYCDVPECEDECMHCSGENYRGTISKTESGIECQPWDSQEPHSHEYIPSKFPSKDLKENYCRNPDGEPRPWCFTSNPEKRWEFCNIPRCSSPPPPPGPMLQCLKGRGENYRGKIAVTKSGHTCQRWNKQTPHKHNRTPENFPCRGLDENYCRNPDGELEPWCYTTNPDVRQEYCAIPSCGTSSPHTDRVEQSPVIQECYEGKGENYRGTTSTTISGKKCQAWSSMTPHQHKKTPDNFPNADLIRNYCRNPDGDKSPWCYTMDPTVRWEFCNLEKCSGTGSTVLNAQTTRVPSVDTTSHPESDCMYGSGKDYRGKRSTTVTGTLCQAWTAQEPHRHTIFTPDTYPRAGLEENYCRNPDGDPNGPWCYTTNPKKLFDYCDIPQCVSPSSFDCGKPRVEPQKCPGRIVGGCYAQPHSWPWQISLRTRFGEHFCGGTLIAPQWVLTAAHCLERSQWPGAYKVILGLHREVNPESYSQEIGVSRLFKGPLAADIALLKLNRPAAINDKVIPACLPSQDFMVPDRTLCHVTGWGDTQGTSPRGLLKQASLPVIDNRVCNRHEYLNGRVKSTELCAGHLVGRGDSCQGDSGGPLICFEDDKYVLQGVTSWGLGCARPNKPGVYVRVSRYISWIEDVMKNN
+```
+
+Additionally, provide a name for the protein sequence:
+
+```
+Please enter a name for the protein sequence: sp|O18783|PLMN_NOTEU
+```
+
+2. FASTA File Entry
+
+```
+Please enter the protein sequence or fasta file location: input_data/example_protein_query.fasta
+```
+
+Once you've entered the query sequence, the program will identify domains within the sequence and generate function predictions based on the final Domain2GO mapping set. The resulting output will be saved in the specified mapping path.
+
+<br/>
+
 ## Please refer for more information:
 
 Ulusoy, E., & Dogan, T. (2022). Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO. *bioRxiv*, 514980v1. [Link](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1)
