@@ -90,7 +90,7 @@ Please enter a name for the protein sequence: sp|O18783|PLMN_NOTEU
 Please enter the protein sequence or fasta file location: input_data/example_protein_query.fasta
 ```
 
-Once you've entered the query sequence, the program will identify domains within the sequence and generate function predictions based on the final Domain2GO mapping set. The resulting output will be saved in the specified mapping path.
+Once you've entered the query sequence, the program will identify domains within the sequence and generate function predictions based on the final Domain2GO mapping set. The output will be saved in the specified mapping path.
 
 <br/>
 
