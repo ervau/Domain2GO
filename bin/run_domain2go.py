@@ -5,14 +5,6 @@ import os
 import time
 import pandas as pd
 
-import argparse
-
-parser = argparse.ArgumentParser(description='Protein function prediction based on Domain2GO mappings')
-parser.add_argument('--mapping_path', required=True, help='Path to previously generated Domain2GO mappings or where to save new mappings if not previously generated')
-
-args = parser.parse_args()
-
-
 def find_domains():
 
     email = input("Please enter your email for InterProScan query: ")
@@ -143,19 +135,22 @@ def generate_function_predictions(domains_df, mapping_path):
         print(f'Protein function predictions saved at {os.path.join(mapping_path, f"{protein_name}_function_predictions.txt")}')
 
 
-def main(args):
+def main():
+
+    cwd = os.getcwd()
+    mapping_path = "{}Domain2GO/output".format(cwd.split("Domain2GO")[0])
 
     domains_df = find_domains()
 
     if type(domains_df) == pd.DataFrame:
         # check if domain2go mappings exist
-        domain2go_df_path = os.path.join(args.mapping_path, 'finalized_domain2go_mappings.txt')
+        domain2go_df_path = os.path.join(mapping_path, 'finalized_domain2go_mappings.txt')
         if not os.path.exists(domain2go_df_path):
             print('Domain2GO mappings not found, generating mappings')
 
             try:
                 os.system(f'python main_training.py --em skip --enrichment skip --cafa_eval skip')
-                generate_function_predictions(domains_df, args.mapping_path)
+                generate_function_predictions(domains_df, mapping_path)
 
             except Exception as e:
                 print('Error in generating Domain2GO mappings:')
@@ -165,8 +160,8 @@ def main(args):
 
         else:
             print(f'Domain2GO mappings found at {domain2go_df_path}, generating protein function predictions')
-            generate_function_predictions(domains_df, args.mapping_path)
+            generate_function_predictions(domains_df, mapping_path)
 
 
 if __name__ == '__main__':
-    main(args)
+    main()
