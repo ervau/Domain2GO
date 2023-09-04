@@ -15,7 +15,7 @@ The study is summarized in the schematic workflow below.
 - [Installation](#installation)
 - [Descriptions of Folders and Files in the Domain2GO Repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
 - [Downloading the Finalized Domain and Protein Function Prediction Datasets](#downloading-the-finalized-domain-and-protein-function-prediction-datasets)
-- [Predicting the Function(s) of a New Protein Sequence Using Domain2GO Mappings](#Predicting-the-Function(s)-of-a-New-Protein-Sequence-Using-Domain2GO-Mappings)
+- [Predicting the Function(s) of a New Protein Sequence Using Domain2GO Mappings](#predicting-the-function(s)-of-a-new-protein-sequence-using-domain2go-mappings)
 - [How to reproduce the results in the paper](#how-to-reproduce-the-results-in-the-paper)
   - [Explanation of the Parameters](#explanation-of-the-parameters)
 
