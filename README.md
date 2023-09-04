@@ -15,7 +15,7 @@ The study is summarized in the schematic workflow below.
 - [Installation](#installation)
 - [Descriptions of folders and files in the Domain2GO repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
 - [Downloading Final Domain2GO and protein function prediction datasets](#downloading-final-domain2go-and-protein-function-prediction-datasets)
-- [Protein Function Prediction with Domain2GO Mapping Set](#protein-function-prediction-with-domain2go-mapping-set)
+- [Protein Function Prediction Using Domain2GO Mappings](#protein-function-prediction-using-domain2go-mappings)
   - [Generating Function Predictions for a Query Protein](#generating-function-predictions-for-a-query-protein)
 - [How to reproduce the results in the paper](#how-to-reproduce-the-results-in-the-paper)
   - [Explanation of Parameters](#explanation-of-parameters)
@@ -47,7 +47,7 @@ The study is summarized in the schematic workflow below.
   - "protein_function_predictions.txt" file in this folder contains the resulting protein function prediction set (5,046,060 GO term predictions for 291,519 proteins and 11,742 GO terms)
 
 
-## Protein Function Prediction with Domain2GO Mapping Set
+## Protein Function Prediction Using Domain2GO Mappings
 
 You can generate function predictions for a query protein using the final Domain2GO mapping set. Please note that the following program is designed to generate predictions for a single protein due to the extended runtime of InterProScan. If you need predictions for multiple UniProtKB/Swiss-Prot proteins, we recommend utilizing our comprehensive protein function prediction dataset available [here](https://drive.google.com/drive/folders/1YF-lgvPsv5Xt_dhjr21QUCOl6z1iV9ZJ?usp=sharing). The file "protein_function_predictions.txt" within this folder contains function predictions for a substantial collection of 291,519 UniProtKB/Swiss-Prot proteins.
  
