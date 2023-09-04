@@ -17,7 +17,7 @@ The study is summarized in the schematic workflow below.
 - [Downloading Final Domain2GO and protein function prediction datasets](#downloading-final-domain2go-and-protein-function-prediction-datasets)
 - [Protein Function Prediction with Domain2GO Mapping Set](#protein-function-prediction-with-domain2go-mapping-set)
   - [Generating Function Predictions for a Query Protein](#generating-function-predictions-for-a-query-protein)
-- [How to re-produce](#how-to-re-produce)
+- [How to reproduce the results in the paper](#how-to-reproduce-the-results-in-the-paper)
   - [Explanation of Parameters](#explanation-of-parameters)
 
 ## Installation
@@ -86,7 +86,7 @@ Once you've entered the query sequence, the program will identify domains within
 <br/>
 
 
-## How to re-produce
+## How to reproduce the results in the paper
 
 To generate the Domain2GO mapping set, please set the location of bin folder as the current working directory, and run the main_training script with the desired settings as below:
 
