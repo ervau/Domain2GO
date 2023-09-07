@@ -18,7 +18,7 @@ The study is summarized in the schematic workflow below.
 - [Descriptions of Folders and Files in the Domain2GO Repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
 - [Downloading the Finalized Domain and Protein Function Prediction Datasets](#downloading-the-finalized-domain-and-protein-function-prediction-datasets)
 - [Predicting the Functions of a New Protein Sequence Using Domain2GO Mappings](#predicting-the-functions-of-a-new-protein-sequence-using-domain2go-mappings)
-- [How to reproduce the results in the paper](#how-to-reproduce-the-results-in-the-paper)
+- [How to Reproduce the Results in the Paper](#how-to-reproduce-the-results-in-the-paper)
   - [Explanation of the Parameters](#explanation-of-the-parameters)
 
 <br/>
@@ -103,7 +103,6 @@ Here is an example output:
 | IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0017171 | 0.584       |
 | IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0031638 | 0.259       |
 | IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0070011 | 0.223       |
-|                  |             |                                             |            |             |
 
 <br/>
 
