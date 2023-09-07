@@ -20,6 +20,8 @@ The study is summarized in the schematic workflow below.
 - [Predicting the Functions of a New Protein Sequence Using Domain2GO Mappings](#predicting-the-functions-of-a-new-protein-sequence-using-domain2go-mappings)
 - [How to Reproduce the Results in the Paper](#how-to-reproduce-the-results-in-the-paper)
   - [Explanation of the Parameters](#explanation-of-the-parameters)
+- [Pre-print Article](#pre-print-article)
+- [License](#license)
 
 <br/>
 
@@ -124,7 +126,7 @@ python main_training.py --em skip --enrichment skip --cafa_eval skip
 
 <br/>
 
-## Pre-print Article <!-- omit in toc -->
+## Pre-print Article
 
 Please refer to our pre-print for more information:
 
@@ -132,7 +134,7 @@ Ulusoy, E., & Dogan, T. (2022). Mutual Annotation-Based Prediction of Protein Do
 
 <br/>
 
-## License <!-- omit in toc -->
+## License
 Copyright (C) 2022 HUBioDataLab
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
