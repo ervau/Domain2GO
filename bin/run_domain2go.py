@@ -105,7 +105,7 @@ def find_domains():
         domains_df = pd.DataFrame.from_dict(entries, orient='index').reset_index()
         domains_df['protein_name'] = name
         domains_df = domains_df[['protein_name', 'index', 'name', 'locations']]
-        domains_df.columns = ['protein_name', 'accession', 'name', 'locations']
+        domains_df.columns = ['protein_name', 'domain_accession', 'domain_name', 'domain_locations']
         return domains_df
 
     else:
@@ -128,8 +128,9 @@ def generate_function_predictions(domains_df, mapping_path):
         return None
     
     else:
-        merged_df = merged_df[['accession', 'name', 'locations', 'GO', 's']]
-        merged_df.columns = ['domain_accession', 'domain_name', 'domain_locations', 'GO_id', 'probability']
+        merged_df['protein_name'] = domains_df['protein_name'].iloc[0]
+        merged_df = merged_df[['protein_name', 'GO', 'locations', 's', 'accession', 'name',]]
+        merged_df.columns = ['protein_name', 'GO_ID', 'domain_locations', 'probability', 'domain_accession', 'domain_name',]
 
         # save protein function predictions
         protein_name = domains_df['protein_name'].iloc[0]
