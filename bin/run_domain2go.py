@@ -94,7 +94,9 @@ def find_domains():
                         entries[entry['accession']]['locations'].extend(location_list)
 
                 entries[entry['accession']]['locations'] = list(set(entries[entry['accession']]['locations']))
-                entries[entry['accession']]['locations'] = ';'.join(entries[entry['accession']]['locations'])
+                entries[entry['accession']]['locations'] = sorted([i.split('-') for i in entries[entry['accession']]['locations']], key=lambda x: (int(x[0]), int(x[1])))
+                entries[entry['accession']]['locations'] = ['-'.join(i) for i in entries[entry['accession']]['locations']]
+                # entries[entry['accession']]['locations'] = '|'.join(entries[entry['accession']]['locations'])
         
     if entries:
         print('Domains found')
