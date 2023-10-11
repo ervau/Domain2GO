@@ -1,4 +1,5 @@
-# Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO [![pre-print article](https://img.shields.io/badge/bioRxiv-2022.11.03.514980-b31b1b.svg)](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO)
+# Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO
+[![pre-print article](https://img.shields.io/badge/bioRxiv-2022.11.03.514980-b31b1b.svg)](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO)
 <!-- omit in toc -->
 
 
@@ -17,7 +18,7 @@ The study is summarized in the schematic workflow below.
 
 ## Content <!-- omit in toc -->
 
-- [Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO  ](#mutual-annotation-based-prediction-of-protein-domain-functions-with-domain2go--)
+- [Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO](#mutual-annotation-based-prediction-of-protein-domain-functions-with-domain2go)
   - [Installation](#installation)
   - [Descriptions of Folders and Files in the Domain2GO Repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
   - [Downloading the Finalized Domain and Protein Function Prediction Datasets](#downloading-the-finalized-domain-and-protein-function-prediction-datasets)
