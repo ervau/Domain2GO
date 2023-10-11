@@ -1,4 +1,7 @@
-# Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO <!-- omit in toc -->
+# Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO [![pre-print article](https://img.shields.io/badge/bioRxiv-2022.11.03.514980-b31b1b.svg)](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO)
+<!-- omit in toc -->
+
+
 
 Identifying the functions of known proteins is an important task in understanding their critical roles in biological processes. Although high throughput sequencing tools seem to make this task easier, experimental function identification techniques cannot keep up with the increasing amount of sequence data due to their expensive and time-consuming nature. Continuously expanding output of the high throughput sequencing tools is stored in public databases such as the UniProt Knowledgebase (UniProtKB) and the majority of it (currently ~%99, November 2021) is not experimentally annotated yet.  
 <br/>
@@ -14,14 +17,15 @@ The study is summarized in the schematic workflow below.
 
 ## Content <!-- omit in toc -->
 
-- [Installation](#installation)
-- [Descriptions of Folders and Files in the Domain2GO Repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
-- [Downloading the Finalized Domain and Protein Function Prediction Datasets](#downloading-the-finalized-domain-and-protein-function-prediction-datasets)
-- [Predicting the Functions of a New Protein Sequence Using Domain2GO Mappings](#predicting-the-functions-of-a-new-protein-sequence-using-domain2go-mappings)
-- [How to Reproduce the Results in the Paper](#how-to-reproduce-the-results-in-the-paper)
-  - [Explanation of the Parameters](#explanation-of-the-parameters)
-- [Pre-print Article](#pre-print-article)
-- [License](#license)
+- [Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO  ](#mutual-annotation-based-prediction-of-protein-domain-functions-with-domain2go--)
+  - [Installation](#installation)
+  - [Descriptions of Folders and Files in the Domain2GO Repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
+  - [Downloading the Finalized Domain and Protein Function Prediction Datasets](#downloading-the-finalized-domain-and-protein-function-prediction-datasets)
+  - [Predicting the Functions of a New Protein Sequence Using Domain2GO Mappings](#predicting-the-functions-of-a-new-protein-sequence-using-domain2go-mappings)
+  - [How to Reproduce the Results in the Paper](#how-to-reproduce-the-results-in-the-paper)
+    - [Explanation of the Parameters](#explanation-of-the-parameters)
+  - [Pre-print Article](#pre-print-article)
+  - [License](#license)
 
 <br/>
 
