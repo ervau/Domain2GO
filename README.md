@@ -2,7 +2,7 @@
 
 <!-- omit in toc -->
 
-[![pre-print article](https://img.shields.io/badge/bioRxiv-2022.11.03.514980-b31b1b.svg)](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO)
+[![pre-print article](https://img.shields.io/badge/bioRxiv-2022.11.03.514980-b31b1b.svg)](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO) [![license](https://img.shields.io/badge/license-GPLv3-blue.svg)](http://www.gnu.org/licenses/)
 
 Identifying the functions of known proteins is an important task in understanding their critical roles in biological processes. Although high throughput sequencing tools seem to make this task easier, experimental function identification techniques cannot keep up with the increasing amount of sequence data due to their expensive and time-consuming nature. Continuously expanding output of the high throughput sequencing tools is stored in public databases such as the UniProt Knowledgebase (UniProtKB) and the majority of it (currently ~%99, November 2021) is not experimentally annotated yet.  
 <br/>
