@@ -23,6 +23,8 @@ The study is summarized in the schematic workflow below.
   - [Descriptions of Folders and Files in the Domain2GO Repository](#descriptions-of-folders-and-files-in-the-domain2go-repository)
   - [Downloading the Finalized Domain and Protein Function Prediction Datasets](#downloading-the-finalized-domain-and-protein-function-prediction-datasets)
   - [Predicting the Functions of a New Protein Sequence Using Domain2GO Mappings](#predicting-the-functions-of-a-new-protein-sequence-using-domain2go-mappings)
+    - [User Interface](#user-interface)
+    - [Command Line](#command-line)
   - [How to Reproduce the Results in the Paper](#how-to-reproduce-the-results-in-the-paper)
     - [Explanation of the Parameters](#explanation-of-the-parameters)
   - [Pre-print Article](#pre-print-article)
@@ -64,10 +66,19 @@ The study is summarized in the schematic workflow below.
 ## Predicting the Functions of a New Protein Sequence Using Domain2GO Mappings
 
 You can generate function predictions for a query protein using the final Domain2GO mapping set. Please note that the following program is designed to generate predictions for a single protein due to the extended runtime of InterProScan. If you need predictions for multiple UniProtKB/Swiss-Prot proteins, we recommend utilizing our comprehensive protein function prediction dataset available [here](https://drive.google.com/drive/folders/1YF-lgvPsv5Xt_dhjr21QUCOl6z1iV9ZJ?usp=sharing). The file "protein_function_predictions.txt" within this folder contains function predictions for a substantial collection of 291,519 UniProtKB/Swiss-Prot proteins.
- 
-To generate function predictions based on the final Domain2GO mapping set, please use the following command:
 
-``` 
+To generate function predictions for a single protein sequence, you can either use user interface or command line.
+
+### User Interface
+
+You can access the user interface of Domain2GO from [here](https://huggingface.co/spaces/HUBioDataLab/Domain2GO). You can query a protein sequence by entering it directly or by uploading a FASTA file. Upon entering the query sequence, the program will identify domains within the sequence and generate function predictions based on the final Domain2GO mapping set. The output will be available for download as a CSV file. For more information please refer to the User Guide page of the user interface.
+
+
+### Command Line
+
+To generate function predictions for a protein sequence using command line, please use the following command:
+
+```
 python run_domain2go.py --mapping_path=../output
 ```
 
