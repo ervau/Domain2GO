@@ -141,8 +141,8 @@ def generate_function_predictions(domains_df, mapping_path):
     
     else:
         merged_df['protein_name'] = domains_df['protein_name'].iloc[0]
-        merged_df = merged_df[['protein_name', 'GO', 'domain_locations', 's', 'domain_accession', 'domain_name',]]
-        merged_df.columns = ['protein_name', 'GO_ID', 'sequence_region', 'probability', 'domain_accession', 'domain_name',]
+        merged_df = merged_df[['protein_name', 'GO', 'GO_name', 'GO_aspect', 'domain_locations', 's', 'domain_accession', 'domain_name',]]
+        merged_df.columns = ['protein_name', 'GO_ID', 'GO_term', 'GO_category', 'sequence_region', 'probability', 'domain_accession', 'domain_name',]
         merged_df['probability'] = merged_df['probability'].round(3)
 
         # save protein function predictions

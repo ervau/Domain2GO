@@ -59,6 +59,13 @@ def random_mapping_create(original_mapping):
 
 def threshold_original_mapping(original_mapping_w_scores):
     filtered_original = original_mapping_w_scores.loc[(original_mapping_w_scores["n"] >= 2 ) & (original_mapping_w_scores["s"] > 0.2 )]
+    
+    go_info_df = pd.read_csv("{}/go_info.csv".format(input_file_path))
+    filtered_original = pd.merge(go_info_df, filtered_original, left_on='go_id', right_on='GO', how='right')
+    filtered_original = filtered_original[['GO', 'Interpro', 'n', 'n_go', 'n_ip', 's', 'aspect', 'name']]
+    filtered_original.columns = ['GO', 'Interpro', 'n', 'n_go', 'n_ip', 's', 'GO_aspect', 'GO_name']
+    filtered_original = filtered_original[['GO', 'GO_aspect', 'GO_name', 'Interpro', 'n', 'n_go', 'n_ip', 's']]
+
     output_file = "{}/filtered_original.txt".format(output_file_path)
     filtered_original.to_csv(output_file, index=False)
 
