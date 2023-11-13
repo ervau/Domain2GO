@@ -105,7 +105,7 @@ def find_domains():
         # create domains dataframe
         domains_df = pd.DataFrame.from_dict(entries, orient='index').reset_index()
         domains_df['protein_name'] = name
-        domains_df['locations'] = domains_df['locations'].apply(lambda x: ','.join(x))
+        domains_df['locations'] = domains_df['locations'].apply(lambda x: ';'.join(x))
         domains_df = domains_df[['protein_name', 'index', 'name', 'locations']]
         domains_df.columns = ['protein_name', 'domain_accession', 'domain_name', 'domain_locations']
 

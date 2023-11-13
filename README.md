@@ -111,7 +111,7 @@ Here is an example output:
 
 | protein_name           | GO_ID      | sequence_region                 | probability | domain_accession | domain_name |
 | ---------------------- | ---------- | ------------------------------- | ----------- | ---------------- | ----------- |
-| sp\|O18783\|PLMN_NOTEU | GO:0042730 | 101-264,273-354,369-450,473-557 | 0.224       | IPR000001        | Kringle     |
+| sp\|O18783\|PLMN_NOTEU | GO:0042730 | 101-264;273-354;369-450;473-557 | 0.224       | IPR000001        | Kringle     |
 | sp\|O18783\|PLMN_NOTEU | GO:0004175 | 576-804                         | 0.293       | IPR001254        | Trypsin_dom |
 | sp\|O18783\|PLMN_NOTEU | GO:0004252 | 576-804                         | 0.598       | IPR001254        | Trypsin_dom |
 | sp\|O18783\|PLMN_NOTEU | GO:0008233 | 576-804                         | 0.223       | IPR001254        | Trypsin_dom |
