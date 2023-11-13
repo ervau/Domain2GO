@@ -4,6 +4,7 @@ from Bio import SeqIO
 import os
 import time
 import pandas as pd
+import intervaltree
 
 def find_domains():
 
@@ -33,9 +34,9 @@ def find_domains():
     print(f'Finding domains in sequence using InterProScan. This may take a while...')
 
     data= {
-       'email': email,
-       'stype': 'p',
-       'sequence': f'{sequence}'}
+        'email': email,
+        'stype': 'p',
+        'sequence': f'{sequence}'}
 
 
     job_id_response = requests.post('https://www.ebi.ac.uk/Tools/services/rest/iprscan5/run', headers=headers, data=data)
@@ -94,18 +95,20 @@ def find_domains():
                         entries[entry['accession']]['locations'].extend(location_list)
 
                 entries[entry['accession']]['locations'] = list(set(entries[entry['accession']]['locations']))
-                entries[entry['accession']]['locations'] = sorted([i.split('-') for i in entries[entry['accession']]['locations']], key=lambda x: (int(x[0]), int(x[1])))
-                entries[entry['accession']]['locations'] = ['-'.join(i) for i in entries[entry['accession']]['locations']]
-                # entries[entry['accession']]['locations'] = '|'.join(entries[entry['accession']]['locations'])
-        
+                if len(entries[entry['accession']]['locations']) > 1:
+                    entries[entry['accession']]['locations'] = merge_locations(entries[entry['accession']]['locations'])
+                    entries[entry['accession']]['locations'] = sorted([i.split('-') for i in entries[entry['accession']]['locations']], key=lambda x: (int(x[0]), int(x[1])))
+                    entries[entry['accession']]['locations'] = ['-'.join(i) for i in entries[entry['accession']]['locations']]
     if entries:
         print('Domains found')
 
         # create domains dataframe
         domains_df = pd.DataFrame.from_dict(entries, orient='index').reset_index()
         domains_df['protein_name'] = name
+        domains_df['locations'] = domains_df['locations'].apply(lambda x: ','.join(x))
         domains_df = domains_df[['protein_name', 'index', 'name', 'locations']]
         domains_df.columns = ['protein_name', 'domain_accession', 'domain_name', 'domain_locations']
+
         return domains_df
 
     else:
@@ -114,13 +117,22 @@ def find_domains():
                         
     # generate protein function predictions based on domain2go mappings
 
+
+def merge_locations(locations):
+    temp_locs= [i.split('-') for i in locations]
+    temp_locs = [[int(i[0]), int(i[1])] for i in temp_locs]
+    tree = intervaltree.IntervalTree.from_tuples(temp_locs)
+    tree.merge_overlaps()
+    merged_locations = ['-'.join([str(i.begin), str(i.end)]) for i in tree]
+    return merged_locations
+    
 def generate_function_predictions(domains_df, mapping_path):
     
     # read domain2go mappings
     domain2go_df = pd.read_csv(os.path.join(mapping_path, 'finalized_domain2go_mappings.txt'))
 
     # merge domain2go mappings with domains found in protein sequence
-    merged_df = pd.merge(domains_df, domain2go_df, left_on='accession', right_on='Interpro')
+    merged_df = pd.merge(domains_df, domain2go_df, left_on='domain_accession', right_on='Interpro')
 
     # if merged_df is empty return
     if merged_df.empty:
@@ -129,8 +141,9 @@ def generate_function_predictions(domains_df, mapping_path):
     
     else:
         merged_df['protein_name'] = domains_df['protein_name'].iloc[0]
-        merged_df = merged_df[['protein_name', 'GO', 'locations', 's', 'accession', 'name',]]
-        merged_df.columns = ['protein_name', 'GO_ID', 'domain_locations', 'probability', 'domain_accession', 'domain_name',]
+        merged_df = merged_df[['protein_name', 'GO', 'domain_locations', 's', 'domain_accession', 'domain_name',]]
+        merged_df.columns = ['protein_name', 'GO_ID', 'sequence_region', 'probability', 'domain_accession', 'domain_name',]
+        merged_df['probability'] = merged_df['probability'].round(3)
 
         # save protein function predictions
         protein_name = domains_df['protein_name'].iloc[0]

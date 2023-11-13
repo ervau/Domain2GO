@@ -82,7 +82,7 @@ To generate function predictions for a protein sequence using command line, plea
 python run_domain2go.py --mapping_path=../output
 ```
 
-Upon executing the command, you will be prompted to provide a query protein sequence or the path to a FASTA file containing the sequence.
+Upon executing the command, you will be prompted to provide an email and a query protein sequence or the path to a FASTA file containing the sequence. Email is required for InterProScan to notify you when your job is done. Your email will not be used for any other purpose.
 
 You have two options for entering the query protein sequence:
 
@@ -109,18 +109,17 @@ Once you've entered the query sequence, the program will identify domains within
 
 Here is an example output:
 
-
-| domain_accession | domain_name | domain_locations | GO_id | probability |
-| ------ | ------ | ------ | ------ | ------ |
-| IPR000001        | Kringle     | 371-448;274-352;... | GO:0042730 | 0.224       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0004175 | 0.293       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0004252 | 0.598       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0008233 | 0.223       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0008236 | 0.592       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0016825 | 0.584       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0017171 | 0.584       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0031638 | 0.259       |
-| IPR001254        | Trypsin_dom | 577-804;577-802;...             | GO:0070011 | 0.223       |
+| protein_name           | GO_ID      | sequence_region                 | probability | domain_accession | domain_name |
+| ---------------------- | ---------- | ------------------------------- | ----------- | ---------------- | ----------- |
+| sp\|O18783\|PLMN_NOTEU | GO:0042730 | 101-264,273-354,369-450,473-557 | 0.224       | IPR000001        | Kringle     |
+| sp\|O18783\|PLMN_NOTEU | GO:0004175 | 576-804                         | 0.293       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0004252 | 576-804                         | 0.598       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0008233 | 576-804                         | 0.223       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0008236 | 576-804                         | 0.593       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0016825 | 576-804                         | 0.584       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0017171 | 576-804                         | 0.584       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0031638 | 576-804                         | 0.259       | IPR001254        | Trypsin_dom |
+| sp\|O18783\|PLMN_NOTEU | GO:0070011 | 576-804                         | 0.223       | IPR001254        | Trypsin_dom |
 
 <br/>
 
