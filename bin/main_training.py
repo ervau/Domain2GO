@@ -3,7 +3,7 @@ import os
 from train_domain2go import train_domain2go
 from em_algorithm import run_em_algorithm_theta_calc, run_em_algorithm_e_calc
 from enrichment_analysis import run_enrichment_analysis
-from cafa_evaluation import create_raw_predictions, fmax_calc
+from eval_preds import *
 
 parser = argparse.ArgumentParser(description='Domain2GO arguments')
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     else:
         pass
 
-    # enrichment analysis/plot
+    # enrichment analysis
     # if user doesn't want to perform EM algorithm, 
     # "em_full_output.txt" file can be saved into output folder to perform enrichment analysis
 
@@ -69,5 +69,9 @@ if __name__ == "__main__":
         pass
 
     else:
-        create_raw_predictions(initial_mapping_w_scores)
-        fmax_calc()
+        print('-------------------Performing CAFA3 evaluation-------------------')
+        # create_raw_predictions(initial_mapping_w_scores)
+        preds_dict = load_single_model_predictions()
+        benchmark = load_benchmark()
+        overall_eval_all(benchmark, preds_dict)
+        organism_specific_eval_all(benchmark, preds_dict)
