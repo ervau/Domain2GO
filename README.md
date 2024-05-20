@@ -2,7 +2,7 @@
 
 <!-- omit in toc -->
 
-[![pre-print article](https://img.shields.io/badge/bioRxiv-2022.11.03.514980-b31b1b.svg)](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO) [![license](https://img.shields.io/badge/license-GPLv3-blue.svg)](http://www.gnu.org/licenses/)
+[![publication](https://img.shields.io/badge/DOI-10.1002/pro.4988-b31b1b.svg)](https://doi.org/10.1002/pro.4988) [![tool](https://img.shields.io/badge/tool-x.svg?logo=streamlit&logoColor=black&color=ffd21c)](https://huggingface.co/spaces/HUBioDataLab/Domain2GO) [![license](https://img.shields.io/badge/license-GPLv3-blue.svg)](http://www.gnu.org/licenses/)
 
 Identifying the functions of known proteins is an important task in understanding their critical roles in biological processes. Although high throughput sequencing tools seem to make this task easier, experimental function identification techniques cannot keep up with the increasing amount of sequence data due to their expensive and time-consuming nature. Continuously expanding output of the high throughput sequencing tools is stored in public databases such as the UniProt Knowledgebase (UniProtKB) and the majority of it (currently ~%99, November 2021) is not experimentally annotated yet.  
 <br/>
@@ -27,7 +27,7 @@ The study is summarized in the schematic workflow below.
     - [Command Line](#command-line)
   - [How to Reproduce the Results in the Paper](#how-to-reproduce-the-results-in-the-paper)
     - [Explanation of the Parameters](#explanation-of-the-parameters)
-  - [Pre-print Article](#pre-print-article)
+  - [Publication](#publication)
   - [License](#license)
 
 <br/>
@@ -149,11 +149,11 @@ python main_training.py --em skip --enrichment skip --cafa_eval skip
 
 <br/>
 
-## Pre-print Article
+## Publication
 
-Please refer to our pre-print for more information:
+Please refer to our publication for more information. If you use the Domain2GO method or the datasets provided in this repository, please cite this paper:
 
-Ulusoy, E., & Dogan, T. (2022). Mutual Annotation-Based Prediction of Protein Domain Functions with Domain2GO. *bioRxiv*, 514980v1. [Link](https://www.biorxiv.org/content/10.1101/2022.11.03.514980v1)
+Ulusoy E, Doğan T. Mutual annotation-based prediction of protein domain functions with Domain2GO. Protein Science. 2024; 33(6):e4988. [Link](https://doi.org/10.1002/pro.4988)
 
 <br/>
 
