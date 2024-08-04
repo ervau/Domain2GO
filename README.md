@@ -25,7 +25,7 @@ We offer a user-friendly interface for Domain2GO that allows users to predict th
 - **Easy Query Input:** Enter a protein sequence directly or upload a FASTA file.
 - **Automated Domain Identification:** The program identifies domains within the query sequence.
 - **Function Prediction:** Generates function predictions based on the Domain2GO mapping set.
-- **Downloadable Results:** Outputs are available for download as a CSV file.
+- **Downloadable Results:** Generated function predictions are available for download as a CSV file.
 
 For more detailed instructions, please refer to the User Guide page of the user interface. This tool simplifies the process of protein function prediction, making it accessible to users without requiring extensive computational resources or software installations.
 
